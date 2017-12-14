@@ -40,10 +40,7 @@ uint8_t txbuf[5];
 
 // **************************************************************
 void wavTrigger::flush(void) {
-
-int i;
-uint8_t dat;
-
+    int i;
 	rxCount = 0;
 	rxLen = 0;
 	rxMsgReady = false;
@@ -51,7 +48,7 @@ uint8_t dat;
 	  voiceTable[i] = 0xffff;
 	}
 	while(WTSerial.available())
-		dat = WTSerial.read();
+		WTSerial.read();
 }
 
 
@@ -161,7 +158,7 @@ uint16_t track;
 }
 
 // **************************************************************
-bool wavTrigger::isTrackPlaying(int trk) {
+bool wavTrigger::isTrackPlaying(uint16_t trk) {
 
 int i;
 bool fResult = false;
@@ -246,37 +243,37 @@ int wavTrigger::getNumTracks(void) {
 
 // **************************************************************
 void wavTrigger::trackPlaySolo(int trk) {
-  
+
 	trackControl(trk, TRK_PLAY_SOLO);
 }
 
 // **************************************************************
 void wavTrigger::trackPlaySolo(int trk, bool lock) {
-  
+
 	trackControl(trk, TRK_PLAY_SOLO, lock);
 }
 
 // **************************************************************
 void wavTrigger::trackPlayPoly(int trk) {
-  
+
 	trackControl(trk, TRK_PLAY_POLY);
 }
 
 // **************************************************************
 void wavTrigger::trackPlayPoly(int trk, bool lock) {
-  
+
 	trackControl(trk, TRK_PLAY_POLY, lock);
 }
 
 // **************************************************************
 void wavTrigger::trackLoad(int trk) {
-  
+
 	trackControl(trk, TRK_LOAD);
 }
 
 // **************************************************************
 void wavTrigger::trackLoad(int trk, bool lock) {
-  
+
 	trackControl(trk, TRK_LOAD, lock);
 }
 
@@ -300,7 +297,7 @@ void wavTrigger::trackResume(int trk) {
 
 // **************************************************************
 void wavTrigger::trackLoop(int trk, bool enable) {
- 
+
 	if (enable)
 		trackControl(trk, TRK_LOOP_ON);
 	else
@@ -309,7 +306,7 @@ void wavTrigger::trackLoop(int trk, bool enable) {
 
 // **************************************************************
 void wavTrigger::trackControl(int trk, int code) {
-  
+
 uint8_t txbuf[8];
 
 	txbuf[0] = SOM1;
@@ -325,7 +322,7 @@ uint8_t txbuf[8];
 
 // **************************************************************
 void wavTrigger::trackControl(int trk, int code, bool lock) {
-  
+
 uint8_t txbuf[9];
 
 	txbuf[0] = SOM1;
@@ -423,8 +420,3 @@ unsigned short off;
 	txbuf[6] = EOM;
 	WTSerial.write(txbuf, 7);
 }
-
-
-
-
-

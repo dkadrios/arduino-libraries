@@ -109,7 +109,7 @@ public:
 	void setAmpPwr(bool enable);
 	bool getVersion(char *pDst, int len);
 	int getNumTracks(void);
-	bool isTrackPlaying(int trk);
+	bool isTrackPlaying(uint16_t trk);
 	void masterGain(int gain);
 	void stopAllTracks(void);
 	void resumeAllInSync(void);
